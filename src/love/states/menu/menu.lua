@@ -122,9 +122,6 @@ return {
 
 				girlfriendTitle:draw()
 				titleEnter:draw()
-				if input:getActiveDevice() == "joy" then
-					love.graphics.printf("CONTROLLER DETECTED: THIS MOD REQUIRES A KEYBOARD FOR EXTRA KEYS (DEFAULTS TO MANIA ON CONTROLLER)", -640, 370, 853, "center", nil, 1.3, 1.3)
-				end
 
 				love.graphics.pop()
 		love.graphics.pop()

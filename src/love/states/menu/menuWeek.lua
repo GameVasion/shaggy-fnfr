@@ -124,11 +124,7 @@ return {
 						}
 						nextPresenceUpdate = 0
 					end
-					if input:getActiveDevice() ~= "joy" then
-						songAppend = difficultyStrs[songDifficulty]
-					else
-						songAppend = "-easy"
-					end
+					songAppend = difficultyStrs[songDifficulty]
 
 					storyMode = true
 
@@ -160,66 +156,39 @@ return {
 			end
 		end
 
-		if input:getActiveDevice() == "joy" then
-			if weekNum == 6 then
-				weekNum = 5
-				menuFunc()
-			end
-		end
-
 		if not graphics.isFading() then
 			if input:pressed("down") then
 				audio.playSound(selectSound)
-				if input:getActiveDevice() == "joy" then
-					if weekNum ~= 5 then
-						weekNum = weekNum + 1
-					else
-						weekNum = 1
-					end
+				if weekNum ~= 6 then
+					weekNum = weekNum + 1
 				else
-					if weekNum ~= 6 then
-						weekNum = weekNum + 1
-					else
-						weekNum = 1
-					end
+					weekNum = 1
 				end
 				menuFunc()
 
 			elseif input:pressed("up") then
 				audio.playSound(selectSound)
-				if input:getActiveDevice() == "joy" then
-					if weekNum ~= 1 then
-						weekNum = weekNum - 1
-					else
-						weekNum = 5
-					end
+				if weekNum ~= 1 then
+					weekNum = weekNum - 1
 				else
-					if weekNum ~= 1 then
-						weekNum = weekNum - 1
-					else
-						weekNum = 6
-					end
+					weekNum = 6
 				end
 				menuFunc()
 
 			elseif input:pressed("left") then
 				audio.playSound(selectSound)
-				if input:getActiveDevice() ~= "joy" then
-					if songDifficulty ~= 1 then
-						songDifficulty = songDifficulty - 1
-					else
-						songDifficulty = 3 
-					end
+				if songDifficulty ~= 1 then
+					songDifficulty = songDifficulty - 1
+				else
+					songDifficulty = 3 
 				end
 
 			elseif input:pressed("right") then
 				audio.playSound(selectSound)
-				if input:getActiveDevice() ~= "joy" then
-					if songDifficulty ~= 3 then
-						songDifficulty = songDifficulty + 1
-					else
-						songDifficulty = 1
-					end
+				if songDifficulty ~= 3 then
+					songDifficulty = songDifficulty + 1
+				else
+					songDifficulty = 1
 				end
 
 			elseif input:pressed("confirm") then
@@ -242,16 +211,12 @@ return {
 
 			love.graphics.push()
 				love.graphics.scale(cam.sizeX, cam.sizeY)
-				if input:getActiveDevice() ~= "joy" then
-					if songDifficulty == 1 then
-						mania:draw()
-					elseif songDifficulty == 2 then
-						normal:draw()
-					elseif songDifficulty == 3 then
-						canon:draw()
-					end
-				else
+				if songDifficulty == 1 then
 					mania:draw()
+				elseif songDifficulty == 2 then
+					normal:draw()
+				elseif songDifficulty == 3 then
+					canon:draw()
 				end
 
 				if weekNum == 1 then
@@ -300,11 +265,9 @@ return {
 
 					week3:draw()
 					week4:draw()
-					if input:getActiveDevice() ~= "joy" then
-						week5:draw()
-					end
+					week5:draw()
 
-				elseif weekNum == 6 and input:getActiveDevice() ~= "joy" then
+				elseif weekNum == 6 then
 					week4.y = 130
 					week5.x, week5.y = 0, 220
 					week4:draw()

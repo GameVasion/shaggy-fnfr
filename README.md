@@ -1,3 +1,4 @@
+# IGNORE THE FACT THIS IS FORKED. I AM THE ORIGINAL PERSON WHO ADDED 6k TO FNFR. THAT IS MY ALT
 # You are 100% allowed to use the 6k-9k code for other ports (Just make sure to credit :) )
 
 # ![Logo](images/logo.png)

@@ -132,11 +132,7 @@ return {
                     status.setLoading(false)
                 elseif menuButton == 2 then
                     status.setLoading(true)
-                    if input:getActiveDevice() == "joy" then
-                        Gamestate.switch(menuFreeplaySWITCH)
-                    else
-                        Gamestate.switch(menuFreeplay)
-                    end
+                    Gamestate.switch(menuFreeplay)
                     status.setLoading(false)
                 elseif menuButton == 3 then
                     status.setLoading(true)

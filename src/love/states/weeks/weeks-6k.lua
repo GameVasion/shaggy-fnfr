@@ -738,9 +738,9 @@ return {
 
 					table.remove(boyfriendNote, 1)
 
-					if combo >= 5 then self:safeAnimate(girlfriend, "sad", true, 1) end
-
-					health = health - 2
+					if not settings.healthLoss then
+                        health = health - 2
+                    end
 					missCounter = missCounter + 1
 				end
 			end
@@ -839,12 +839,12 @@ return {
 
 					notMissed[noteNum] = false
 
-					if combo >= 5 then self:safeAnimate(girlfriend, "sad", true, 1) end
-
 					self:safeAnimate(boyfriend, "miss " .. curAnim, false, 3)
 
 					score = score - 10
-					health = health - 2
+					if not settings.healthLoss then
+                        health = health - 2
+                    end
 					missCounter = missCounter + 1
 				end
 			end
@@ -1013,6 +1013,41 @@ return {
 						love.graphics.print("Score: " .. score .. " Misses: " .. missCounter .. " Accuracy: 100%", -225, 400)
 					else
 						love.graphics.print("Score: " .. score .. " Misses: " .. missCounter .. " Accuracy: " .. math.floor((altScore / (noteCounter + missCounter))) .. "%", -225, 400)
+					end
+				end
+			end
+			if musicTime <= 7500 then
+				if settings.downscroll then
+					if input:getActiveDevice() ~= "joy" then
+						love.graphics.print("S", 155, 200, nil, 3.4, 3.4)
+						love.graphics.print("D", 295, 200, nil, 3.4, 3.4)
+						love.graphics.print("F", 425, 200, nil, 3.4, 3.4)
+						love.graphics.print("J", 530, 200, nil, 3.4, 3.4)
+						love.graphics.print("K", 660, 200, nil, 3.4, 3.4)
+						love.graphics.print("L", 790, 200, nil, 3.4, 3.4)
+					else
+						love.graphics.print("Left", 135, 300, nil, 1, 1)
+						love.graphics.print("Down/LT", 275, 300, nil, 1, 1)
+						love.graphics.print("Right/LB", 405, 300, nil, 1, 1)
+						love.graphics.print("Y/RB", 530, 300, nil, 1, 1)
+						love.graphics.print("X/RT", 660, 300, nil, 1, 1)
+						love.graphics.print("A", 790, 300, nil, 1, 1)
+					end
+				else
+					if input:getActiveDevice() ~= "joy" then
+						love.graphics.print("S", 155, -250, nil, 3.4, 3.4)
+						love.graphics.print("D", 295, -250, nil, 3.4, 3.4)
+						love.graphics.print("F", 425, -250, nil, 3.4, 3.4)
+						love.graphics.print("J", 530, -250, nil, 3.4, 3.4)
+						love.graphics.print("K", 660, -250, nil, 3.4, 3.4)
+						love.graphics.print("L", 790, -250, nil, 3.4, 3.4)
+					else
+						love.graphics.print("Left", 135, -350, nil, 1, 1)
+						love.graphics.print("Down/LT", 275, -350, nil, 1, 1)
+						love.graphics.print("Right/LB", 405, -350, nil, 1, 1)
+						love.graphics.print("Y/RB", 530, -350, nil, 1, 1)
+						love.graphics.print("X/RT", 660, -350, nil, 1, 1)
+						love.graphics.print("A", 790, -350, nil, 1, 1)
 					end
 				end
 			end

@@ -766,9 +766,9 @@ return {
 
 					table.remove(boyfriendNote, 1)
 
-					if combo >= 5 then self:safeAnimate(girlfriend, "sad", true, 1) end
-
-					health = health - 2
+					if not settings.healthLoss then
+                        health = health - 2
+                    end
 					missCounter = missCounter + 1
 				end
 			end
@@ -867,12 +867,12 @@ return {
 
 					notMissed[noteNum] = false
 
-					if combo >= 5 then self:safeAnimate(girlfriend, "sad", true, 1) end
-
 					self:safeAnimate(boyfriend, "miss " .. curAnim, false, 3)
 
 					score = score - 10
-					health = health - 2
+					if not settings.healthLoss then
+                        health = health - 2
+                    end
 					missCounter = missCounter + 1
 				end
 			end
@@ -1041,6 +1041,53 @@ return {
 						love.graphics.print("Score: " .. score .. " Misses: " .. missCounter .. " Accuracy: 100%", -225, 400)
 					else
 						love.graphics.print("Score: " .. score .. " Misses: " .. missCounter .. " Accuracy: " .. math.floor((altScore / (noteCounter + missCounter))) .. "%", -225, 400)
+					end
+				end
+			end
+			if musicTime <= 7500 then
+				if settings.downscroll then
+					if input:getActiveDevice() ~= "joy" then
+						love.graphics.print("A", 70, 200, nil, 3, 3)
+						love.graphics.print("S", 175, 200, nil, 3, 3)
+						love.graphics.print("D", 265, 200, nil, 3, 3)
+						love.graphics.print("F", 375, 200, nil, 3, 3)
+						love.graphics.print("SPACE", 440, 220, nil, 1, 1)
+						love.graphics.print("J", 540, 200, nil, 3, 3)
+						love.graphics.print("K", 650, 200, nil, 3, 3)
+						love.graphics.print("L", 730, 200, nil, 3, 3)
+						love.graphics.print(";", 820, 200, nil, 3, 3)
+					else
+						love.graphics.print("Left", 90, 300, nil, 0.9, 0.9)
+						love.graphics.print("Down", 195, 300, nil, 0.9, 0.9)
+						love.graphics.print("Up", 285, 300, nil, 0.9, 0.9)
+						love.graphics.print("Right", 365, 300, nil, 0.9, 0.9)
+						love.graphics.print("LB/RB/LT/RT", 440, 300, nil, 0.7, 0.7)
+						love.graphics.print("Y", 570, 300, nil, 0.9, 0.9)
+						love.graphics.print("B", 650, 300, nil, 0.9, 0.9)
+						love.graphics.print("X", 740, 300, nil, 0.9, 0.9)
+						love.graphics.print("A", 810, 300, nil, 0.9, 0.9)
+					end
+				else
+					if input:getActiveDevice() ~= "joy" then
+						love.graphics.print("A", 70, -250, nil, 3, 3)
+						love.graphics.print("S", 175, -250, nil, 3, 3)
+						love.graphics.print("D", 265, -250, nil, 3, 3)
+						love.graphics.print("F", 375, -250, nil, 3, 3)
+						love.graphics.print("SPACE", 450, -270, nil, 1, 1)
+						love.graphics.print("J", 540, -250, nil, 3, 3)
+						love.graphics.print("K", 650, -250, nil, 3, 3)
+						love.graphics.print("L", 730, -250, nil, 3, 3)
+						love.graphics.print(";", 820, -250, nil, 3, 3)
+					else
+						love.graphics.print("Left", 90, -350, nil, 0.9, 0.9)
+						love.graphics.print("Down", 195, -350, nil, 0.9, 0.9)
+						love.graphics.print("Up", 285, -350, nil, 0.9, 0.9)
+						love.graphics.print("Right", 365, -350, nil, 0.9, 0.9)
+						love.graphics.print("LB/RB/LT/RT", 440, -350, nil, 0.7, 0.7)
+						love.graphics.print("Y", 570, -350, nil, 0.9, 0.9)
+						love.graphics.print("B", 650, -350, nil, 0.9, 0.9)
+						love.graphics.print("X", 740, -350, nil, 0.9, 0.9)
+						love.graphics.print("A", 810, -350, nil, 0.9, 0.9)
 					end
 				end
 			end

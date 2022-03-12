@@ -42,6 +42,11 @@ function love.load()
 	settings = require "settings"
 	input = require "input"
 
+	customBindLeftFixed = string.upper(customBindLeft) 
+	customBindDownFixed = string.upper(customBindDown)
+	customBindUpFixed = string.upper(customBindUp)
+	customBindRightFixed = string.upper(customBindRight)
+
 	-- Load states
 	clickStart = require "states.click-start"
 	debugMenu = require "states.debug-menu"
@@ -83,20 +88,43 @@ function love.load()
 		settings.ghostTapping = data.saveSettingsMoment.ghostTapping
 		settings.showDebug = data.saveSettingsMoment.showDebug
 		graphics.setImageType(data.saveSettingsMoment.setImageType)
+		settings.healthLoss = data.saveSettingsMoment.healthLoss
 	else
-		settings.hardwareCompression = false
-		graphics.setImageType("dds")
-		settings.downscroll = false
-		settings.ghostTapping = false
-		settings.showDebug = false
-		data = {}
-        data.saveSettingsMoment = {
-            hardwareCompression = settings.hardwareCompression,
-			downscroll = settings.downscroll,
-			ghostTapping = settings.ghostTapping,
-			showDebug = settings.showDebug,
-			setImageType = "dds"
-        }
+		if curOS ~= "NX" then
+			settings.hardwareCompression = false
+			graphics.setImageType("dds")
+			settings.downscroll = false
+			settings.ghostTapping = false
+			settings.showDebug = false
+			settings.healthLoss = false
+			data = {}
+			data.saveSettingsMoment = {
+				hardwareCompression = settings.hardwareCompression,
+				downscroll = settings.downscroll,
+				ghostTapping = settings.ghostTapping,
+				showDebug = settings.showDebug,
+				setImageType = "dds",
+				healthLoss = settings.healthLoss
+			}
+		else
+			settings.hardwareCompression = false
+			graphics.setImageType("dds")
+			settings.downscroll = false
+			settings.ghostTapping = false
+			settings.showDebug = false
+			settings.healthLoss = false
+			settings.sixKeyPlus = false
+			data = {}
+			data.saveSettingsMoment = {
+				hardwareCompression = settings.hardwareCompression,
+				downscroll = settings.downscroll,
+				ghostTapping = settings.ghostTapping,
+				showDebug = settings.showDebug,
+				setImageType = "dds",
+				healthLoss = settings.healthLoss,
+				sixKeyPlus = settings.sixKeyPlus
+			}
+		end
 		serialized = lume.serialize(data)
 		love.filesystem.write("settings.data", serialized)
 		love.window.showMessageBox("SETTING UPDATE!", "Due to FNFR Vasions update. Keybinds/Video modes can be created in settings.ini and settings can now be changed via the settings menu")

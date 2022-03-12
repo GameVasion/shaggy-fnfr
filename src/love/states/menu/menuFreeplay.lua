@@ -124,12 +124,8 @@ local function switchMenu(menu)
 				graphics.fadeOut(
 					0.5,
 					function()
-						if input:getActiveDevice() == "joy" then
-							songAppend = "-easy"
-						else
-							songAppend = difficultyStrs[songDifficulty]
-						end
-
+						songAppend = difficultyStrs[songDifficulty]
+						
 						storyMode = false
 
 						Gamestate.switch(weekData[weekNum], songNum, songAppend)
@@ -211,11 +207,7 @@ function confirmFunc()
 			0.5,
 			function()
 				menu:musicStop()
-				if input:getActiveDevice() == "joy" then
-					songAppend = "-easy"
-				else
-					songAppend = difficultyStrs[songDifficulty]
-				end
+				songAppend = difficultyStrs[songDifficulty]
 
 				storyMode = false
 

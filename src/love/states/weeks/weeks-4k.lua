@@ -725,9 +725,9 @@ return {
 
 					table.remove(boyfriendNote, 1)
 
-					if combo >= 5 then self:safeAnimate(girlfriend, "sad", true, 1) end
-
-					health = health - 2
+					if not settings.healthLoss then
+                        health = health - 2
+                    end
 					missCounter = missCounter + 1
 				end
 			end
@@ -826,12 +826,12 @@ return {
 
 					notMissed[noteNum] = false
 
-					if combo >= 5 then self:safeAnimate(girlfriend, "sad", true, 1) end
-
 					self:safeAnimate(boyfriend, "miss " .. curAnim, false, 3)
 
 					score = score - 10
-					health = health - 2
+					if not settings.healthLoss then
+                        health = health - 2
+                    end
 					missCounter = missCounter + 1
 				end
 			end
@@ -1002,6 +1002,38 @@ return {
 						love.graphics.print("Score: " .. score .. " Misses: " .. missCounter .. " Accuracy: 100%", -225, 400)
 					else
 						love.graphics.print("Score: " .. score .. " Misses: " .. missCounter .. " Accuracy: " .. math.floor((altScore / (noteCounter + missCounter))) .. "%", -225, 400)
+					end
+				end
+			end
+			if settings.downscroll then
+				textYPosition = 400
+			else
+				textYPosition = -400
+			end
+			if musicTime <= 1750 then
+				if settings.downscroll then
+					if input:getActiveDevice() ~= "joy" then
+						love.graphics.print(customBindLeft, 235, 200, nil, 4, 4)
+						love.graphics.print(customBindDownFixed, 405, 200, nil, 4, 4)
+						love.graphics.print(customBindUpFixed, 575, 200, nil, 4, 4)
+						love.graphics.print(customBindRightFixed, 720, 200, nil, 4, 4)
+					else
+						love.graphics.print("LT/Left/Y", 195, 300, nil, 1, 1)
+						love.graphics.print("LB/Down/B", 375, 300, nil, 1, 1)
+						love.graphics.print("RB/Up/X", 535, 300, nil, 1, 1)
+						love.graphics.print("RT/Right/A", 690, 300, nil, 1, 1)
+					end
+				else
+					if input:getActiveDevice() ~= "joy" then
+						love.graphics.print(customBindLeftFixed, 235, -250, nil, 4, 4)
+						love.graphics.print(customBindDownFixed, 405, -250, nil, 4, 4)
+						love.graphics.print(customBindUpFixed, 575, -250, nil, 4, 4)
+						love.graphics.print(customBindRightFixed, 720, -250, nil, 4, 4)
+					else
+						love.graphics.print("LT/Left/Y", 195, -350, nil, 1, 1)
+						love.graphics.print("LB/Down/B", 375, -350, nil, 1, 1)
+						love.graphics.print("RB/Up/X", 535, -350, nil, 1, 1)
+						love.graphics.print("RT/Right/A", 690, -350, nil, 1, 1)
 					end
 				end
 			end

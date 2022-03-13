@@ -56,9 +56,9 @@ if love.system.getOS() == "NX" then
 			gameRight9k = {"key:f", "button:dpright"},
 			gameMiddle9k = {"key:space", "button:rightshoulder", "axis:triggerright+", "button:leftshoulder", "axis:triggerleft+"},
 			gameLeft29k = {"key:j", "button:x"},
-			gameDown29k = {"key:k", "button:b"},
+			gameDown29k = {"key:k", "button:a"},
 			gameUp29k = {"key:l", "button:y"},
-			gameRight29k = {"key:;", "button:a"},
+			gameRight29k = {"key:;", "button:b"},
 
 			gameBack = {"button:start", "key:escape"},
 		},
